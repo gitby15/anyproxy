@@ -45,13 +45,15 @@ function anyproxy_wsUtil(config){
 
 		if(type == "update"){
 			config.onGetUpdate && config.onGetUpdate.call(self, content);
-
+			
 		}else if(type == "body"){
 			config.onGetBody && config.onGetBody.call(self, content, reqRef);
 
 			if(data.reqRef && self.bodyCbMap[reqRef]){
 				self.bodyCbMap[reqRef].call(self,content);
 			}
+		} else if(type == 'lxlog'){
+			alert('1');
 		}
 	}
 

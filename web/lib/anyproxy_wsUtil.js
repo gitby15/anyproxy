@@ -53,6 +53,12 @@ function anyproxy_wsUtil(config){
 				if(data.reqRef && self.bodyCbMap[reqRef]){
 					self.bodyCbMap[reqRef].call(self,content);
 				}
+			}else if(type == 'lxlog'){
+				var dom =$('<div class="lx-toast" />');
+				console.log(dom);
+				dom.text("bid:" + data.content['val_bid']);
+				$('body').append(dom);
+				console.log(data);
 			}
 		}
 
