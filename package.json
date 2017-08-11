@@ -47,7 +47,8 @@
   "scripts": {
     "test": "sh test/test.sh",
     "testserver": "node test/server/startServer.js",
-    "no-pre-commit": "exit 0"
+    "no-pre-commit": "exit 0",
+    "web": "webpack && anyproxy --intercetp"
   },
   "pre-commit": "no-pre-commit",
   "repository": {

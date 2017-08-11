@@ -54,11 +54,32 @@ function anyproxy_wsUtil(config){
 					self.bodyCbMap[reqRef].call(self,content);
 				}
 			}else if(type == 'lxlog'){
-				var dom =$('<div class="lx-toast" />');
-				console.log(dom);
-				dom.text("bid:" + data.content['val_bid']);
-				$('body').append(dom);
-				console.log(data);
+				if (!this._LX_COUNT) {
+					this._LX_COUNT = 0;
+				}
+        var content = Object.assign({}, data.content);
+        content.lxCount = this._LX_COUNT;
+        if (!$('.lx-container')[0]) {
+					var lxContainer = $('<div class="lx-container" />');
+					$('body').append(lxContainer);
+        }
+        var dom =$('<div class="lx-toast" />');
+        var text = '序号: ' + this._LX_COUNT++;
+        if (content['val_bid']) {
+        	text += "\n - " + 'val_bid: ' + content['val_bid'];
+        }
+        text += "\n - " + 'val_cid: ' + content['val_cid'];
+        if(content['val_lab']){
+          text += "\n - " + 'val_lab: ' + JSON.stringify(content['val_lab'], 4, 4);
+        }
+        dom.text(text);
+        $('.lx-container').append(dom);
+        setTimeout(function(){
+          dom.remove();
+        }, 5000);
+        console.info(`lxsdk: 序号=[${this._LX_COUNT}] - val_bid=[${content['val_bid'] || ''}] - val_cid=[${content['val_cid']}]`, content);
+			} else if(type === 'lxStart') {
+			
 			}
 		}
 

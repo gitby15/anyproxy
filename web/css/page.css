@@ -5,15 +5,21 @@ body{
 body, html {
   height: 100%;
 }
-
-.lx-toast {
-	position: fixed;
-	width: 350px;
-	height: 350px;
+.lx-container{
+	position:fixed;
 	top:0;
 	left:0;
+	display:flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	max-height:100%;
+}
+.lx-toast {
+	display: inline-block;
+	width: 300px;
 	border:solid red 1px;
 	background-color: white;
+	white-space: pre-wrap;
 }
 
 .topHead{
